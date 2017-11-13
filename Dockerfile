@@ -5,6 +5,15 @@ RUN apk add --no-cache chromium
 
 EXPOSE 9222
 
+RUN addgroup -S headless && adduser -S -g headless headless 
+
+RUN echo 'ALL ALL = (ALL) NOPASSWD: ALL' >> /etc/sudoers \
+  && echo 'headless:nopassword' | chpasswd
+
+RUN mkdir /data && chown -R headless:headless /data
+
+USER headless
+
 ENTRYPOINT ["chromium-browser"]
 
 # flags from https://github.com/GoogleChrome/lighthouse/blob/master/chrome-launcher/flags.ts
