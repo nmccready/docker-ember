@@ -17,7 +17,7 @@ USER headless
 ENTRYPOINT ["chromium-browser"]
 
 # flags from https://github.com/GoogleChrome/lighthouse/blob/master/chrome-launcher/flags.ts
-CMD [ \
+CMD [ "" \
   # Disable various background network services, including extension updating,
   #   safe browsing service, upgrade detector, translate, UMA
   "--disable-background-networking", \
@@ -44,5 +44,5 @@ CMD [ \
   # Expose port 9222 for remote debugging
   "--remote-debugging-port=9222", \
   # Disable fetching safebrowsing lists, likely redundant due to disable-background-networking
-  "--safebrowsing-disable-auto-update", \
-]
+  "--safebrowsing-disable-auto-update" \
+  ]
